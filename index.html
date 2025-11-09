@@ -1,262 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open the Letter 💌</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Poppins:wght@400;600&display=swap');
-
-  body {
-    background-color: #fff6fa;
-    background-image: url('https://i.pinimg.com/736x/0f/9a/54/0f9a54e13c31004cd4ccbfbec1cadcec.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: 'Quicksand', sans-serif;
-    text-align: center;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 1s ease;
-  }
-
-  .fade {
-    opacity: 0;
-    transition: opacity 1s ease;
-  }
-
-  .visible {
-    opacity: 1;
-  }
-
-  .card, .letter {
-    background: rgba(255, 255, 255, 0.85);
-    border: 2px solid #ffbcd9;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(255, 182, 193, 0.35);
-    padding: 40px 30px;
-    max-width: 420px;
-    text-align: center;
-    transition: all 0.4s ease;
-    position: absolute;
-  }
-
-  .card img {
-    width: 180px;
-    height: 130px;
-    border-radius: 12px;
-    border: 2px solid #ffcce0;
-  }
-
-  h2 {
-    color: #ff80a8;
-    margin-top: 20px;
-    font-size: 18px; 
-  }
-
-  p {
-    color: #ff94b4;
-    font-size: 13px;
-  }
-
-  .buttons {
-    margin-top: 25px;
-  }
-
-  button {
-    border: none;
-    border-radius: 25px;
-    padding: 8px 18px;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 8px;
-    transition: 0.2s;
-    font-weight: bold;
-  }
-
-  .yes, .no {
-    background-color: #ffb6c1;
-    color: white;
-  }
-
-  button:hover {
-    transform: scale(1.1);
-  }
-
-  /* Love Letter Card */
-  .letter {
-    display: none;
-    max-width: 450px;
-    overflow: hidden;
-    animation: fadeIn 1s ease forwards;
-  }
-
-  .letter img {
-    width: 30%;
-    height: auto;
-    border-bottom: 2px solid #ffbcd9;
-  }
-
-  .letter-content {
-    padding: 20px;
-  }
-
-  .letter-content h2 {
-    color: #ff80a8;
-    margin-bottom: 5px;
-    font-size: 22px;
-  }
-
-  .letter-content h3 {
-    color: #ff80a8;
-    margin-top: 0;
-    font-size: 16px;
-  }
-
-  .letter-content p {
-    color: #444;
-    font-size: 14px;
-    line-height: 1.7;
-    text-align: justify;
-  }
-
-  .button-container {
-    margin: 25px 0 15px;
-  }
-
-  .button-container button {
-    background-color: #ffb6c1;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 22px;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .button-container button:hover {
-    background-color: #ff99b7;
-    transform: scale(1.05);
-  }
-
-  /* Hidden Spotify Player */
-  audio {
-    display: none;
-  }
-
-  /* Back Button */
-  .back-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #ffb6c1;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 22px;
-    font-size: 14px;
-    font-family: 'Quicksand', sans-serif;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(255, 182, 193, 0.35);
-    transition: 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .back-btn:hover {
-    background-color: #ff99b7;
-    transform: scale(1.05);
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Malori's Journal</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-
-<!-- Envelope Card -->
-<div class="card visible" id="envelopeCard">
-  <img src="https://static.wikia.nocookie.net/needy-streamer-overload/images/c/cc/Tweet_selfie_cho_happy_002.png/revision/latest?cb=20220228052148" alt="pink envelope">
-  <h2>Do you want to open it?</h2>
-  <p>"ヾ(˃̶⺫˂̶)ノ"</p>
-  <div class="buttons">
-    <button class="yes" onclick="openLetter()">Open it!</button>
-    <button class="no" onclick="noThanks()">No ty</button>
-  </div>
-</div>
-
-<!-- Love Letter -->
-<div class="letter fade" id="loveLetter">
-  <img src="https://i.pinimg.com/736x/fb/f3/27/fbf3271b2e567d4b2819f9745e75160c.jpg" alt="Love Photo">
-  <div class="letter-content">
-    <h2>To my Eri</h2>
-    <h3>(^o^)</h3>
-    <p>HIIIIIIIII, It has been a month since you said "yes" to my confession and I will always be thankful for that, I was planning to buy flowers for you but there is a typhoon so the flower shops I went is closed.</p>
-
-    <p>I made this because I know you the type of person who does not like going outside, I know it looked rushed but trust me it is not, so don't laugh please!!.</p>
-
-    <p>I know we have not seen each other for a while and I kinda miss you everyday and I'm just respecting your space and bounderies, but that does not make me less like and love you. I know this is cheesy or corny but 
-        it is made of hardwork and lots of planning, so I do hope you like this one. Once again thank you for giving me a chance and happy 1 month of being with me.</p>
-
-    <div class="button-container">
-      <button onclick="startOver()">Start Over ♥</button>
+  <div class="scene">
+    <div class="blobs">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
     </div>
-  </div>
-</div>
 
-<!-- Spotify Player -->
-<iframe id="spotifyPlayer" 
-  src="https://open.spotify.com/embed/track/0KOCCyZ2P4rBaPBtnS09i9?utm_source=generator&theme=0" 
-  width="0" height="0" 
-  frameborder="0" allow="autoplay; clipboard-write; encrypted-media" loading="lazy">
-</iframe>
+    <main class="card" id="card">
+      <img class="avatar" src="https://i.pinimg.com/736x/09/d1/3e/09d13e8ed8f228d12fed0818d42bae8f.jpg" alt="" />
+      <h1 class="name">Malori </h1>
+      <p class="role"> A Poetry for my Significant other</p>
 
-<!-- Back Button (link) -->
-<a href="https://irolami.github.io/Spacelori/" class="back-btn">Back</a>
+      <nav class="links">
+        <a href="https://irolami.github.io/Poetry/" class="btn">Poems</a>
+        <a href="https://irolami.github.io/About/" class="btn">About me </a>
+        <a href="#" class="btn">For my little Six</a>
+      </nav>    
 
-<script>
-  const spotifyPlayer = document.getElementById("spotifyPlayer");
-
-  function openLetter() {
-    const envelope = document.getElementById("envelopeCard");
-    const letter = document.getElementById("loveLetter");
-
-    envelope.classList.remove("visible");
-    envelope.classList.add("fade");
     
-    spotifyPlayer.src = "https://open.spotify.com/embed/track/0KOCCyZ2P4rBaPBtnS09i9?autoplay=1";
+    </main>
+  </div>
 
-    setTimeout(() => {
-      envelope.style.display = "none";
-      letter.style.display = "block";
-      setTimeout(() => letter.classList.add("visible"), 50);
-    }, 800);
-  }
-
-  function noThanks() {
-    alert("Aww 😢 maybe next time~");
-  }
-
-  function startOver() {
-    const envelope = document.getElementById("envelopeCard");
-    const letter = document.getElementById("loveLetter");
-
-    letter.classList.remove("visible");
-    letter.classList.add("fade");
-
-    setTimeout(() => {
-      letter.style.display = "none";
-      envelope.style.display = "block";
-      setTimeout(() => envelope.classList.add("visible"), 50);
-    }, 800);
-  }
-</script>
-
+  <script src="./script.js"></script>
 </body>
 </html>
